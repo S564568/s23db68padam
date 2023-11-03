@@ -1,0 +1,20 @@
+extends layout 
+
+block content
+  h1= title
+  - let result = [{name: "Mustang", color: "Black", price: 1000000 },{ name: "Shire", color: "Grey", price: 2000000 },{ name: "Apaaloosa", color: "White", price: 1700000 }]
+
+  .container-fluid
+    .row
+      each horse in result
+        .col-sm-2(onclick=`buy('${horse.name}', '${horse.color}', ${horse.price})`)
+          h2 #{horse.name}
+          p Color: #{horse.color}
+          p Price: #{horse.price}     
+             
+
+  script. 
+       function buy(index)
+       {
+        alert(`you purchased Item: ${index+1}`)
+       }
