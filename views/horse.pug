@@ -2,16 +2,16 @@ extends layout
 
 block content
   h1= title
-  - let result = [{name: "Mustang", color: "Black", price: 1000000 },{ name: "Shire", color: "Grey", price: 2000000 },{ name: "Apaaloosa", color: "White", price: 1700000 }]
+  - let items = results;
 
-  .container-fluid
-    .row
-      each horse in result
-        .col-sm-2(onclick=`buy('${horse.name}', '${horse.color}', ${horse.price})`)
-          h2 #{horse.name}
-          p Color: #{horse.color}
-          p Price: #{horse.price}     
-             
+  div.container-fluid
+    div.row
+      each horse,index in items
+        div.col-sm-2(onclick=`buy(${index})`) #{horse.name} 
+        div.col-sm-2(onclick=`buy(${index})`) #{horse.color}
+        div.col-sm-2(onclick=`buy(${index})`) #{horse.price}
+  br
+  hr             
 
   script. 
        function buy(index)
