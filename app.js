@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var horseRouter = require('./routes/horse');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var horse = require('./models/horse');
+var resource = require('./routes/resource');
 
 var horse=require('./models/horse');
 var app = express();
@@ -28,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/horse', horseRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource', resource);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,15 +73,12 @@ console.log("First object saved")}
 console.error(err)
 });
 
-
-
 let instance2 = new horse({name: "Shire", color: "Grey", price: 2000000});
 instance2.save().then(doc=>{
 console.log("second object saved")}
 ).catch(err=>{
 console.error(err)
 });
-
 
 let instance3 = new horse({ name: "Apaaloosa", color: "White", price: 1700000});
 instance3.save().then(doc=>{
@@ -89,3 +89,4 @@ console.error(err)
 }
 let reseed = true;
 if (reseed) {recreateDB();}
+
