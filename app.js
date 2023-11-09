@@ -10,7 +10,7 @@ var horseRouter = require('./routes/horse');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 
-
+var horse=require('./models/horse');
 var app = express();
 
 // view engine setup
@@ -46,3 +46,46 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+// Delete everything
+await horse.deleteMany();
+let instance1 = new horse({name: "Mustang", color: "Black", price: 1000000 });
+instance1.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+
+
+let instance2 = new horse({name: "Shire", color: "Grey", price: 2000000});
+instance2.save().then(doc=>{
+console.log("second object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+
+let instance3 = new horse({ name: "Apaaloosa", color: "White", price: 1700000});
+instance3.save().then(doc=>{
+console.log("third object saved")}
+).catch(err=>{
+console.error(err)
+});
+}
+let reseed = true;
+if (reseed) {recreateDB();}
