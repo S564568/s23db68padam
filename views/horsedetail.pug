@@ -2,25 +2,29 @@ extends layout
 
 block content
   h1= title
-  - let horseid = toShow._id
-  - let name  = toShow.name
-  - let color = toShow.color
-  - let price = toShow.price
+  if toShow == null
+    h2 No instance to toshow
+  else
+    - let horseid = toShow._id
+    - let name = toShow.name
+    - let color = toShow.color
+    - let price = toShow.price
 
-  div
-    div.row
-      div(class='horseAttr mr-3') horse ID is:
-      div #{horseid}
+    div
+      div.row
+        div(class='horseAttr mr-3') horse ID is:
+        div #{horseid}
 
-    div.row
-      div(class='horseAttr mr-3') horse Name is:
-      div #{name}
+      div.row
+        div(class='horseAttr mr-3') horse Name is:
+        div #{name}
 
-    div.row
-      div(class='horseAttr mr-3') horse Color is:
-      div #{color}
+      div.row
+        div(class='horseAttr mr-3') horse Color is:
+        div #{color}
 
-    div.row
-      div(class='horseAttr mr-3') horse Cost is:
-      div #{price}
+      div.row
+        div(class='horseAttr mr-3') horse Cost is:
+        div #{price}
+
 

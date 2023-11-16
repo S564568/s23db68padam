@@ -11,3 +11,5 @@ router.get('/create', horse_controlers.horse_create_Page);
 
 router.get('/update', horse_controlers.horse_update_Page);
 
+router.get('/delete', horse_controlers.horse_delete_Page);
+
