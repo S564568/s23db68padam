@@ -4,3 +4,5 @@ var router = express.Router();
 /* GET costumes */
 router.get('/', horse_controlers.horse_view_all_Page );
 module.exports = router;
+
+router.get('/detail', horse_controlers.horse_view_one_Page);

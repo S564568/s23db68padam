@@ -30,7 +30,19 @@ res.send(`{"error": ${err}}`);
 }
 };
 
-
+// Handle a show one view with id specified by query
+exports.horse_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await horse.findById( req.query.id)
+    res.render('horsedetail',
+    { title: 'horse Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
 
 
@@ -117,6 +129,4 @@ exports.horse_delete = async function(req, res) {
     }
     };
     
-
-
 
