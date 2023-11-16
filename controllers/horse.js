@@ -58,7 +58,19 @@ exports.horse_create_Page = function(req, res) {
     }
     };
 
-
+// Handle building the view for updating a horse.
+// query provides the id
+exports.horse_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await horse.findById(req.query.id)
+    res.render('horseupdate', { title: 'horse Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    }
 
 
 

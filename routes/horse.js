@@ -8,3 +8,6 @@ module.exports = router;
 router.get('/detail', horse_controlers.horse_view_one_Page);
 
 router.get('/create', horse_controlers.horse_create_Page);
+
+router.get('/update', horse_controlers.horse_update_Page);
+

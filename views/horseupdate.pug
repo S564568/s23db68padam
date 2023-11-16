@@ -1,0 +1,36 @@
+extends layout
+block content
+ h1= title
+ - let horseid = toShow._id
+ - let name = toShow.name
+ - let color = toShow.color
+ - let price = toShow.price
+ div.row(class='mb-2')
+ div.mr-1 ID is
+ div #{horseid}
+ - let actionid = "/resource/horse/" + horseid
+ form(id='horseForm', action=actionid, method="PUT")
+  div.form-group
+   label.horseAttr(for='name') horse Name
+   input#k_name(type='text', name='name',value=name)
+  div.form-group
+   label.horseAttr(for='color') horse color
+   input#k_age(type='text', name='color',value=color)
+  div.form-group
+   label.horseAttr(for='price') horse jumpheight
+   input#price(type='number', name='price',value=price)
+  input(type="submit")
+ script.
+  document.forms['horseForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.json();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   });
