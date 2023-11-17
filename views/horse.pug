@@ -3,18 +3,28 @@ extends layout
 block content
   h1= title
   - let items = results;
+  div(class="container-fluid")
+    div(class="row")
+      each item in items
+        - let destination = `dispatch(\"/horse/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") horse #{item.name}(#{item.color}) is #{item.price}
+          button.btn(class="btn-primary ml-1", onclick=destination) Update
 
-  div.container-fluid
-    div.row
-      each horse,index in items
-        div.col-sm-2(onclick=`buy(${index})`) #{horse.name} 
-        div.col-sm-2(onclick=`buy(${index})`) #{horse.color}
-        div.col-sm-2(onclick=`buy(${index})`) #{horse.price}
-  br
-  hr             
+    div.container-fluid
+      div.row
+        each horse, index in items
+          div.col-sm-2(onclick=`buy(${index})`) #{horse.name} 
+          div.col-sm-2(onclick=`buy(${index})`) #{horse.color}
+          div.col-sm-2(onclick=`buy(${index})`) #{horse.price}
+      br
+      hr             
 
-  script. 
-       function buy(index)
-       {
-        alert(`you purchased Item: ${index+1}`)
-       }
+  script.
+    function buy(index) {
+      alert(`You purchased Item: ${index+1}`)
+    }
+
+  script.
+    function dispatch(path) {
+      window.location.href = path
+    }
