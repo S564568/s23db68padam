@@ -1,23 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p I am Sai Teja.
-  button(type="button", class="btn btn-secondary" onclick="goFaster()") Press Me
-  br
-  br
-  br
-  div#faster Increase the speed
-
-  script. 
-    mph = 20;
-    change = 1;
-
-    function goFaster(){
-      mph += change;
-      change += 1;
-      document.getElementById("faster").innerHTML = "MPH" + mph + "change" + change;}
-      br
-      br
-      br
-      a(class='button', href='/horse') horse search
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/horse") Take me to horse
+    br
+    a(href="/logout") Logout
