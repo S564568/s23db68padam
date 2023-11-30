@@ -11,7 +11,8 @@ const secured = (req, res, next) => {
  if (req.user){
  return next();
  }
- re
+ rees.redirect("/login");
+}
 
 router.get('/detail',secured, horse_controlers.horse_view_one_Page);
 
@@ -21,3 +22,4 @@ router.get('/update',secured, horse_controlers.horse_update_Page);
 
 router.get('/delete',secured, horse_controlers.horse_delete_Page);
 
+module.exports = router;
