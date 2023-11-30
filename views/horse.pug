@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - let items = results;
+  - let creating = `createingins(\"/horse/create\")`
+  button.btn(class="btn-primary ml-1", onclick=creating) create
   div(class="container-fluid")
     div(class="row")
       each item in items
         - let destination = `dispatch(\"/horse/update?id=${item._id}\")`
+        - let details = `detailingins(\"/horse/detail?id=${item._id}\")`
+        - let deleting = `deletingins(\"/horse/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") horse #{item.name}(#{item.color}) is #{item.price}
           button.btn(class="btn-primary ml-1", onclick=destination) Update
+          button.btn(class="btn-primary ml-1", onclick=details) detail
+          button.btn(class="btn-primary ml-1", onclick=deleting) delete
 
     div.container-fluid
       div.row
@@ -28,3 +34,17 @@ block content
     function dispatch(path) {
       window.location.href = path
     }
+  script.
+    function detailingins(path) {
+      window.location.href = path
+    }
+  script.
+    function deletingins(path) {
+      window.location.href = path
+    }
+  script.
+    function createingins(path) {
+      window.location.href = path
+    }
+ 
+
